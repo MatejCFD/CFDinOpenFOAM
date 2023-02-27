@@ -1,0 +1,147 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+H1 0.0052; // Height 1
+H2 0.0104; // Height 2
+L1 0.2; // Length 1
+L2 0.5; // Length 2
+
+x0 0; // Origin x-coordinate
+y0 0; // Origin y-coordinate
+z0 0.005; // Artificial 3rd coordinate
+
+x1 #calc "$L1"; //
+x2 #calc "$L1+$L2"; //
+
+y1 #calc "$H1"; //
+y2 #calc "-$H1"; //
+
+z1 #calc "$z0"; //
+z2 #calc "-$z0"; //
+
+x1Cells 120;
+x2Cells 300;
+
+y1Cells 24;
+y2Cells 24;
+y3Cells 24;
+
+convertToMeters 1;
+
+vertices
+(
+    ($x0 $y0 $z1) // 0
+    ($x1 $y0 $z1) // 1
+    ($x1 $y2 $z1) // 2
+    ($x2 $y2 $z1) // 3
+    ($x2 $y0 $z1) // 4
+    ($x2 $y1 $z1) // 5
+    ($x1 $y1 $z1) // 6
+    ($x0 $y1 $z1) // 7
+    ($x0 $y0 $z2) // 8
+    ($x1 $y0 $z2) // 9
+    ($x1 $y2 $z2) // 10
+    ($x2 $y2 $z2) // 11
+    ($x2 $y0 $z2) // 12
+    ($x2 $y1 $z2) // 13
+    ($x1 $y1 $z2) // 14
+    ($x0 $y1 $z2) // 15
+);
+
+blocks
+(
+    hex (8 9 14 15 0 1 6 7) // Block 0
+    ($x1Cells $y1Cells 1)
+    simpleGrading (1 1 1)
+
+    hex (9 12 13 14 1 4 5 6) // Block I
+    ($x2Cells $y2Cells 1)
+    simpleGrading (1 1 1)
+
+    hex (10 11 12 9 2 3 4 1) // Block II
+    ($x2Cells $y3Cells 1)
+    simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+	inlet
+	{
+	  type patch;
+	  faces
+	  (
+	  (0 7 15 8)
+	  );
+	 }
+	
+	outlet
+	{
+	  type patch;
+	  faces
+	  (
+	  (4 5 13 12)
+	  (3 4 12 11)
+	  );
+	}
+	
+	upperWall
+	{
+	  type wall;
+	  faces
+	  (
+	  (7 6 14 15)
+	  (6 5 13 14)
+	  );
+	}
+	
+	lowerWall
+	{
+	  type wall;
+	  faces
+	  (
+	  (0 8 9 1)
+	  (2 10 11 3)
+	  );
+	}
+	
+	frontAndBackWall
+	{
+	  type empty;
+	  faces
+	  (
+	  (0 1 6 7)
+	  (1 4 5 6)
+	  (2 3 4 1)
+	  (8 9 14 15)
+	  (9 12 13 14)
+	  (10 11 12 9)
+	  );
+	}
+	
+	sideWall
+	{
+	  type wall;
+	  faces
+	  (
+	  (2 1 9 10)
+	  );
+	}
+);
+// ************************************************************************* //
