@@ -100,7 +100,7 @@ user@PC:~$ source exportCSV.sh
 
 ## 3 Python macro <a name="paragraph3"></a>
 
-One of the easier ways of extracting the .csv files from ParaView is to create a **state** and then record a trace with the desired commands. I highly suggest anyone who hasn't used a trace in ParaView to take a look at Asmaa Hadane's video found in this [link](https://www.youtube.com/watch?v=h6Y7HZR_SAI). 
+One of the easier ways of extracting the .csv files from ParaView is to create a **state** and then record a trace with the desired commands. I highly suggest anyone who hasn't used a trace in ParaView to take a look at Asmaa Hadane's video found in this [link](https://www.youtube.com/watch?v=h6Y7HZR_SAI). Additionally, creating a **state** or a .pvsm file in ParaView can be used in conjuction with the trace. 
 
 I left one example script which can be found in the **kEps** case. Although in order for it to be applicable to the user, lots of directory names have to be adjusted. It is best for the user to create their own macro, or manually export the .csv files. 
 
