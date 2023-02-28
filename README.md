@@ -91,7 +91,7 @@ for i in {1..4}; do	# Loop for each of the mesh configurations
     )
 done
 paste *.ods >> forOctave_kEps1095.ods	# Concatenate all of the .ods files into one file
-find . -maxdepth 1 -type f -name '*.ods' ! -name 'forOctave_kEps1095.ods' -exec rm {} + # Keep only the final file
+sleep 2 && find . -maxdepth 1 -type f -name '*.ods' ! -name 'forOctave_kEps1095.ods' -exec rm {} + # Keep only the final file (delete the rest after 2 sec)
 ```
 The script can be executed by running the following commands in the CLI:
 ```console
