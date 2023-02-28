@@ -42,7 +42,6 @@ end
 %% Let the plotting begin
 % Plot the evolution of streamwise velocity u
 figure(1)
-figure("visible","off")
 for i = 1:4
   u_var = sprintf('u%d', i);
   plot(dt,eval(u_var));
@@ -58,7 +57,6 @@ print -depslatex u1095.tex;
 
 % Plot the evolution of kinematic pressure
 figure(2)
-figure("visible","off")
 for i = 1:4
   p_var = sprintf('p%d', i);
   plot(dt,eval(p_var));
@@ -74,7 +72,6 @@ print -depslatex p1095.tex;
 
 % Plot the evolution of specific TKE dissipation rate - omega
 figure(3)
-figure("visible","off")
 for i = 1:4
   eps_var = sprintf('ome%d', i);
   plot(dt,eval(eps_var));
@@ -90,7 +87,6 @@ print -depslatex ome1095.tex;
 
 % Plot the evolution of TKE - k
 figure(4)
-figure("visible","off")
 for i = 1:4
   k_var = sprintf('k%d', i);
   plot(dt,eval(k_var));
@@ -106,56 +102,48 @@ print -depslatex k1095.tex;
 
 % Plot the average velocity - u_ave vs mesh size
 figure(5)
-figure("visible","off")
 for i = 1:4
   u_ave(1,i) = mean(eval(sprintf('u%d', i)));
   plot(mesh,u_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc u_ave1095.eps;
 print -depslatex u_ave1095.tex;
 
 % Plot the average kinematic pressure - p_ave vs mesh size
 figure(6)
-figure("visible","off")
 for i = 1:4
   p_ave(1,i) = mean(eval(sprintf('p%d', i)));
   plot(mesh,p_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{p}_{k}$ [m^{2}/s^{2}]');
-  ylim([-30 0]);
 end
 print -depsc p_ave1095.eps;
 print -depslatex p_ave1095.tex;
 
 % Plot the average TKE - k_ave vs mesh size
 figure(7)
-figure("visible","off")
 for i = 1:4
   k_ave(1,i) = mean(eval(sprintf('k%d', i)));
   plot(mesh,k_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{k}$ [m^{2}/s^{2}]');
-  ylim([0 5]);
 end
 print -depsc k_ave1095.eps;
 print -depslatex k_ave1095.tex;
 
 % Plot the average specific TKE dissipation rate - omega_ave vs mesh size
 figure(8)
-figure("visible","off")
 for i = 1:4
   ome_ave(1,i) = mean(eval(sprintf('ome%d', i)));
   plot(mesh,eps_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{\omega}$ [1/s]');
-  ylim([0 1000]);
 end
 print -depsc ome_ave1095.eps;
 print -depslatex ome_ave1095.tex;
