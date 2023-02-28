@@ -1,8 +1,19 @@
 # CFD in OpenFOAM
 
 This file serves to complement the .pdf, by providing additional information pertaining to how the directories and files are structured, as well as more comments about scripts. 
- 
- ## 1 Files, directories and sequences
+
+## Table of contents
+1. [Files directories and sequences](#introduction)
+2. [Bash scripts](#paragraph1)
+    1. [masterRun](#subparagraph1)
+    2. [run](#subparagraph2)
+    3. [exportCSV](#subparagraph3)
+3. [Python macro](#paragraph3)
+4. [generatePlot.m](#paragraph4)
+
+
+
+ ## 1 Files, directories and sequences <a name="introduction"></a>
 The project contains 12 cases, there are 3 turbulence models used and for each of them, 4 different mesh configurations. This was mentioned in the .pdf file. Each directory contains 4 cases, and contains the turbulence model used in its name (kEps translates to $k-\varepsilon$ turbulence model, kOme into $k-\omega$ SST, and so on). Example of what the directories contain and how they are set up,  is shown below. 
 
 > **Note:** In this case we are observing the directory for the **kEps** turbulence model.
@@ -29,9 +40,9 @@ It is important to note the chronological order of scrpits. After creating all o
 
 After these scripts have finished, the user will have at his disposal quality plots from the desired locations in the geometry, of the desired quantities. In the project case, these plots were used to compare the numerically obtained velocity profiles in the domain with the velocity profiles from the referenced paper. 
 
-## 2 Bash scripts
+## 2 Bash scripts <a name="paragraph1"></a>
 
-### 2.1. masterRun
+### 2.1. masterRun <a name="subparagraph1"></a>
 This script is responsible for locating the run.sh script and executing it. It only starts the next run.sh script when the previous one has ended. We are sticking to the **kEps** directory throughout the examples, as can be seen below. The loop contains the folders in which the run.sh can be found.
 ```bash
 #!/bin/bash
@@ -47,7 +58,7 @@ The script can be executed by running the following commands in the CLI:
 ```console
 user@PC:~$ sh masterRun.sh
 ```
-### 2.2. run
+### 2.2. run <a name="subparagraph2"></a>
 The run.sh script used for the purpose of this project is an upgraded
 ```bash
 #!/bin/bash
@@ -61,7 +72,7 @@ foamToVTK		        # Convert the standard data to VTK format
 killall gnuplot_x11		# Close all of the residual monitors before commencing the next simulation
 ```
 
-### 2.3. exportCSV
+### 2.3. exportCSV <a name="subparagraph3"></a>
 The following script relies on the .csv data exported from ParaView. This can be done manually, or with the help of a Python macro. Either way, this script is utilized so to avoid manual sorting of data from the .csv files.  Firstly, the script will in this case, take the 2nd column of exported .csv files, ignore the 1st row and export the data to a new .ods file. This will be done for each of the mesh configurations and each of the 4 locations in the backward-facing step (referenced from the paper). For each of the mesh configurations, there will be a total of 4 velocity profiles. The final .ods file will contain all of the 16 velocity profiles, thanks to the paste command. The last line of code will delete all of the .ods files except for the one containing all of the velocities, in order prevent over-crowding. 
 
 > **Note:** After the final .ods file is created, it is mandatory to open it with spreadsheet software and save it again as .ods or .xlsx format. This is one bug that I haven't found a workaround. 
@@ -87,13 +98,13 @@ The script can be executed by running the following commands in the CLI:
 user@PC:~$ source exportCSV.sh
 ```
 
-## 3 Python macro
+## 3 Python macro <a name="paragraph3"></a>
 
-One of the easier ways of extracting the .csv files from ParaView is to create a **state** and then record a trace with the desired commands. I highly suggest anyone who hasn't used a trace in ParaView to take a look at Asmaa Hadane's video found in this [link](https://www.youtube.com/watch?v=h6Y7HZR_SAI). 
+One of the easier ways of extracting the .csv files from ParaView is to create a **state** and then record a trace with the desired commands. I highly suggest anyone who hasn't used a trace in ParaView to take a look at Asmaa Hadane's video found in this [link](https://www.youtube.com/watch?v=h6Y7HZR_SAI). Additionally, creating a **state** or a .pvsm file in ParaView can be used in conjuction with the trace. 
 
 I left one example script which can be found in the **kEps** case. Although in order for it to be applicable to the user, lots of directory names have to be adjusted. It is best for the user to create their own macro, or manually export the .csv files. 
 
-## 4 generatePlot.m
+## 4 generatePlot.m <a name="paragraph4"></a>
 The Octave script takes the .ods file provided by the Python macro and the exportCSV.sh, and extracts the desired columns for plotting. The code should be pretty much self-explanatory, only thing to note is that the format in which the plot is exported is adjusted for $\LaTeX$. This can easily be changed by setting the print command output different format.  The script also features some dynamic programming, to take advantage of the for loops. 
 ```matlab
 clear, close all, clc
