@@ -12,10 +12,11 @@ graphics_toolkit("gnuplot");                        % Choose the graphics toolki
 %% Load all the variables from the csv file format
 all = xlsread('forOctave_Smagorinsky1095.ods');     % Creates a matrix of desired quantities
                                                     % a bit slow for .ods file format
-ux1_paper = xlsread('ux1_rad.ods');
-ux2_paper = xlsread('ux2_rad.ods');
-ux3_paper = xlsread('ux3_rad.ods');
-ux4_paper = xlsread('ux4_rad.ods');
+
+ux1_paper = xlsread('ux1_rad.ods');                 %  Extracted velocities from the paper  %
+ux2_paper = xlsread('ux2_rad.ods');                 %                                       %
+ux3_paper = xlsread('ux3_rad.ods');                 %                                       %
+ux4_paper = xlsread('ux4_rad.ods');                 %                                       %
 
 
 %% Introduce necessary quantities 
@@ -46,7 +47,6 @@ end
 %% Let the plotting begin
 % Plot the velocity profile u @ x1
 figure(1)
-figure("visible","off")
 for i = 1:4
   ux1_var = sprintf('ux1%d', i);
   plot(eval(ux1_var),H/2+5.2);
@@ -60,12 +60,11 @@ hold all;
 plot(ux1_paper(:,1), ux1_paper(:,2),'o r');
 legend("$u_{1}$","$u_{2}$","$u_{3}$","$u_{4}$","$u_{r}");
 legend boxoff;
-print -depsc ux1_SmSm1095.eps;
-print -depslatex ux1_SmSm1095.tex;
+print -depsc ux1_Sm1095.eps;
+print -depslatex ux1_Sm1095.tex;
 
 % Plot the velocity profile u @ x2
 figure(2)
-figure("visible","off")
 for i = 1:4
   ux2_var = sprintf('ux2%d', i);
   plot(eval(ux2_var),H);
@@ -84,7 +83,6 @@ print -depslatex ux2_Sm1095.tex;
 
 % Plot the velocity profile u @ x3
 figure(3)
-figure("visible","off")
 for i = 1:4
   ux3_var = sprintf('ux3%d', i);
   plot(eval(ux3_var),H);
@@ -103,7 +101,6 @@ print -depslatex ux3_Sm1095.tex;
 
 % Plot the velocity profile u @ x2
 figure(4)
-figure("visible","off")
 for i = 1:4
   ux4_var = sprintf('ux4%d', i);
   plot(eval(ux4_var),H);
@@ -122,56 +119,48 @@ print -depslatex ux4_Sm1095.tex;
 
 % Plot the average velocity - ux1_ave vs mesh size
 figure(5)
-figure("visible","off")
 for i = 1:4
   ux1_ave(1,i) = mean(eval(sprintf('ux1%d', i)));
   plot(mesh,ux1_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux1_aveSm1095.eps;
 print -depslatex ux1_aveSm1095.tex;
 
 % Plot the average velocity - ux2_ave vs mesh size
 figure(6)
-figure("visible","off")
 for i = 1:4
   ux2_ave(1,i) = mean(eval(sprintf('ux2%d', i)));
   plot(mesh,ux2_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux2_aveSm1095.eps;
 print -depslatex ux2_aveSm1095.tex;
 
 % Plot the average velocity - ux3_ave vs mesh size
 figure(7)
-figure("visible","off")
 for i = 1:4
   ux3_ave(1,i) = mean(eval(sprintf('ux3%d', i)));
   plot(mesh,ux3_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux3_aveSm1095.eps;
 print -depslatex ux3_aveSm1095.tex;
 
 % Plot the average velocity - ux4_ave vs mesh size
 figure(8)
-figure("visible","off")
 for i = 1:4
   ux4_ave(1,i) = mean(eval(sprintf('ux4%d', i)));
   plot(mesh,ux4_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux4_aveSm1095.eps;
 print -depslatex ux4_aveSm1095.tex;
