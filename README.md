@@ -16,7 +16,7 @@ This file serves to complement the .pdf, by providing additional information per
  ## 1 Files, directories and sequences <a name="introduction"></a>
 The project contains 12 cases, there are 3 turbulence models used and for each of them, 4 different mesh configurations. This was mentioned in the .pdf file. Each directory contains 4 cases, and contains the turbulence model used in its name (kEps translates to $k-\varepsilon$ turbulence model, kOme into $k-\omega$ SST, and so on). Example of what the directories contain and how they are set up,  is shown below. 
 
-> **Note:** In this case we are observing the directory for the **kEps** turbulence model.
+> **Note:** In this case we are observing the directory for the $k-\varepsilon$ (**kEps**) turbulence model.
 
 ```
 kEps
