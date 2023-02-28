@@ -18,5 +18,5 @@ done
 paste *.ods >> forOctave_kEps1095.ods                                       # Merge the files containing 1 column into one file,
                                                                             # containing 16 velocities (4 for 4 different meshes).
 
-find . -maxdepth 1 -type f -name '*.ods' ! -name 'forOctave_kEps1095.ods' -exec rm {} + # Keep only the final file
+sleep 2 && find . -maxdepth 1 -type f -name '*.ods' ! -name 'forOctave_kEps1095.ods' -exec rm {} + # Keep only the final file
 
