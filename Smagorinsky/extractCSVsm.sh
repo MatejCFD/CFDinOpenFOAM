@@ -12,4 +12,3 @@ for i in {1..4}; do
 done
 
 paste *.ods >> forOctave_Smagorinsky1095.ods
-sleep 2 && find . -maxdepth 1 -type f -name '*.ods' ! -name 'forOctave_Smagorinsky1095.ods' -exec rm {} +
