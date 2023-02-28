@@ -43,7 +43,6 @@ end
 %% Let the plotting begin
 % Plot the velocity profile u @ x1
 figure(1)
-figure("visible","off")
 for i = 1:4
   ux1_var = sprintf('ux1%d', i);
   plot(eval(ux1_var),H/2+5.2);
@@ -60,7 +59,6 @@ print -depslatex ux1_1095.tex;
 
 % Plot the velocity profile u @ x2
 figure(2)
-figure("visible","off")
 for i = 1:4
   ux2_var = sprintf('ux2%d', i);
   plot(eval(ux2_var),H);
@@ -75,8 +73,7 @@ print -depsc ux2_1095.eps;
 print -depslatex ux2_1095.tex;
 
 % Plot the velocity profile u @ x3
-figure(2)
-figure("visible","off")
+figure(3)
 for i = 1:4
   ux3_var = sprintf('ux3%d', i);
   plot(eval(ux3_var),H);
@@ -92,7 +89,6 @@ print -depslatex ux3_1095.tex;
 
 % Plot the velocity profile u @ x2
 figure(4)
-figure("visible","off")
 for i = 1:4
   ux4_var = sprintf('ux4%d', i);
   plot(eval(ux4_var),H);
@@ -108,7 +104,6 @@ print -depslatex ux4_1095.tex;
 
 % Plot the average velocity - ux1_ave vs mesh size
 figure(5)
-figure("visible","off")
 for i = 1:4
   ux1_ave(1,i) = mean(eval(sprintf('ux1%d', i)));
   plot(mesh,ux1_ave,'o-r');
@@ -122,7 +117,6 @@ print -depslatex ux1_ave1095.tex;
 
 % Plot the average velocity - ux2_ave vs mesh size
 figure(6)
-figure("visible","off")
 for i = 1:4
   ux2_ave(1,i) = mean(eval(sprintf('ux2%d', i)));
   plot(mesh,ux2_ave,'o-r');
@@ -136,7 +130,6 @@ print -depslatex ux2_ave1095.tex;
 
 % Plot the average velocity - ux3_ave vs mesh size
 figure(7)
-figure("visible","off")
 for i = 1:4
   ux3_ave(1,i) = mean(eval(sprintf('ux3%d', i)));
   plot(mesh,ux3_ave,'o-r');
@@ -150,7 +143,6 @@ print -depslatex ux3_ave1095.tex;
 
 % Plot the average velocity - ux4_ave vs mesh size
 figure(8)
-figure("visible","off")
 for i = 1:4
   ux4_ave(1,i) = mean(eval(sprintf('ux4%d', i)));
   plot(mesh,ux4_ave,'o-r');
