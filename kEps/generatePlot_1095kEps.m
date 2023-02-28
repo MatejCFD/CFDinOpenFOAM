@@ -65,6 +65,7 @@ for i = 1:4
   set(gca,'XAxisLocation','top','YAxisLocation','left');
   ylabel('$y$ [mm]');
   xlabel('$u$ [m/s]');
+  ylim([0 12]);
   hold on;
   legend("boxoff");
   legend("$u_{1}$","$u_{2}$","$u_{3}$","$u_{4}$");
@@ -80,6 +81,7 @@ for i = 1:4
   set(gca,'XAxisLocation','top','YAxisLocation','left');
   ylabel('$y$ [mm]');
   xlabel('$u$ [m/s]');
+  ylim([0 12]);
   hold on;
   legend("boxoff");
   legend("$u_{1}$","$u_{2}$","$u_{3}$","$u_{4}$");
@@ -95,6 +97,7 @@ for i = 1:4
   set(gca,'XAxisLocation','top','YAxisLocation','left');
   ylabel('$y$ [mm]');
   xlabel('$u$ [m/s]');
+  ylim([0 12]);
   hold on;
   legend("boxoff");
   legend("$u_{1}$","$u_{2}$","$u_{3}$","$u_{4}$");
@@ -110,7 +113,6 @@ for i = 1:4
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux1_ave1095.eps;
 print -depslatex ux1_ave1095.tex;
@@ -123,7 +125,6 @@ for i = 1:4
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux2_ave1095.eps;
 print -depslatex ux2_ave1095.tex;
@@ -136,7 +137,6 @@ for i = 1:4
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux3_ave1095.eps;
 print -depslatex ux3_ave1095.tex;
@@ -149,7 +149,6 @@ for i = 1:4
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux4_ave1095.eps;
 print -depslatex ux4_ave1095.tex;
