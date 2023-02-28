@@ -100,7 +100,7 @@ user@PC:~$ source exportCSV.sh
 
 ## 3 Python macro <a name="paragraph3"></a>
 
-One of the easier ways of extracting the .csv files from ParaView is to create a **state** and then record a trace with the desired commands. I highly suggest anyone who hasn't used a trace in ParaView to take a look at Asmaa Hadane's video found in this [link](https://www.youtube.com/watch?v=h6Y7HZR_SAI). Additionally, creating a **state** or a .pvsm file in ParaView can be used in conjuction with the trace. 
+One of the easier ways of extracting the .csv files from ParaView is to record a trace with the desired commands. I highly suggest anyone who hasn't used a trace in ParaView to take a look at Asmaa Hadane's video found in this [link](https://www.youtube.com/watch?v=h6Y7HZR_SAI).
 
 I left one example script which can be found in the **kEps** case. Although in order for it to be applicable to the user, lots of directory names have to be adjusted. It is best for the user to create their own macro, or manually export the .csv files. 
 
@@ -152,7 +152,6 @@ end
 %% Let the plotting begin
 % Plot the velocity profile u @ x1
 figure(1)
-figure("visible","off")
 for i = 1:4
   ux1_var = sprintf('ux1%d', i);
   plot(eval(ux1_var),H/2+5.2);
@@ -169,7 +168,6 @@ print -depslatex ux1_1095.tex;
 
 % Plot the velocity profile u @ x2
 figure(2)
-figure("visible","off")
 for i = 1:4
   ux2_var = sprintf('ux2%d', i);
   plot(eval(ux2_var),H);
@@ -184,8 +182,7 @@ print -depsc ux2_1095.eps;
 print -depslatex ux2_1095.tex;
 
 % Plot the velocity profile u @ x3
-figure(2)
-figure("visible","off")
+figure(3)
 for i = 1:4
   ux3_var = sprintf('ux3%d', i);
   plot(eval(ux3_var),H);
@@ -201,7 +198,6 @@ print -depslatex ux3_1095.tex;
 
 % Plot the velocity profile u @ x2
 figure(4)
-figure("visible","off")
 for i = 1:4
   ux4_var = sprintf('ux4%d', i);
   plot(eval(ux4_var),H);
@@ -217,56 +213,48 @@ print -depslatex ux4_1095.tex;
 
 % Plot the average velocity - ux1_ave vs mesh size
 figure(5)
-figure("visible","off")
 for i = 1:4
   ux1_ave(1,i) = mean(eval(sprintf('ux1%d', i)));
   plot(mesh,ux1_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux1_ave1095.eps;
 print -depslatex ux1_ave1095.tex;
 
 % Plot the average velocity - ux2_ave vs mesh size
 figure(6)
-figure("visible","off")
 for i = 1:4
   ux2_ave(1,i) = mean(eval(sprintf('ux2%d', i)));
   plot(mesh,ux2_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux2_ave1095.eps;
 print -depslatex ux2_ave1095.tex;
 
 % Plot the average velocity - ux3_ave vs mesh size
 figure(7)
-figure("visible","off")
 for i = 1:4
   ux3_ave(1,i) = mean(eval(sprintf('ux3%d', i)));
   plot(mesh,ux3_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux3_ave1095.eps;
 print -depslatex ux3_ave1095.tex;
 
 % Plot the average velocity - ux4_ave vs mesh size
 figure(8)
-figure("visible","off")
 for i = 1:4
   ux4_ave(1,i) = mean(eval(sprintf('ux4%d', i)));
   plot(mesh,ux4_ave,'o-r');
   xlabel('Mesh count [-]');
   xlim([min(mesh) max(mesh)]);
   ylabel('$\bar{u}$ [m/s]');
-  ylim([0 10]);
 end
 print -depsc ux4_ave1095.eps;
 print -depslatex ux4_ave1095.tex;
